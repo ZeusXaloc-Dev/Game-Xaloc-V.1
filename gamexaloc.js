@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
   <head>
-    <title>jogo de lógica</title>
+    <title>jogo de lÃ³gica</title>
  
 
-    <style type="text/css"> /* Estilos da página */
+    <style type="text/css"> /* Estilos da pÃ¡gina */
       <!--  
       * {
         font: 12px "Segoe UI", Tahoma, Verdana, sans-serif;
@@ -32,7 +32,7 @@
     <script type="text/javascript">
       <!--
 
-      cor = new Array();     // Gama de cores disponíveis:
+      cor = new Array();     
       cor[0] = "#FF0000";    // Vermelho
       cor[1] = "#006600";    // Verde
       cor[2] = "#0000FF";    // Azul
@@ -40,34 +40,29 @@
       cor[4] = "#FF9900";    // Laranja
       cor[5] = "#000000";    // Preto
 
-      nivel = 1;       // Nível padrão inicial: fácil 
-      Pensar();        // Ao iniciar o jogo, o PC já deve "pensar" em uma combinação
-      partidas = 1;    // Número de partida inicial
+      nivel = 1;     
+      Pensar();      
+      partidas = 1;    
 
-      limite = new Array();   // Máximo de tentativas até acertar a combinação:
-      limite[1] = 10;         // 10 chances no nível fácil
-      limite[2] = 12;         // 12 chances no nível médio
-      limite[3] = 14;         // 14 chances no nível difícil
+      limite = new Array();   
+      limite[1] = 10;       
+      limite[2] = 12;       
+      limite[3] = 14;        
 
 
-      /****************************************************************
-      *  No nível fácil (1), pode-se criar 256 combinações de cores
-      *  No nível médio (2), pode-se criar 625 combinações de cores
-      *  No nível difícil (3), pode-se criar 1296 combinações de cores
-      *****************************************************************/
 
 
       function Pensar() {
-        indice = nivel * 1 + 2;                            // Atribui 4 cores para o nível 1, 5 cores para o 2 e 6 para o nível 3
-        bloco1 = cor[Math.round(Math.random() * indice)];  // Fórmula que calcula a cor de cada bloco
+        indice = nivel * 1 + 2;                          
+        bloco1 = cor[Math.round(Math.random() * indice)];  
         bloco2 = cor[Math.round(Math.random() * indice)];
         bloco3 = cor[Math.round(Math.random() * indice)];
         bloco4 = cor[Math.round(Math.random() * indice)];
       }
 
       function Jogar() {
-        nivel = document.jogo.nivel.value;   // Atualiza nível: isto evita bug
-        erro = 0;                            // Zera número de erros, pois uma nova partida é iniciada
+        nivel = document.jogo.nivel.value;   
+        erro = 0;                            
 
         var primeiro = document.getElementsByTagName("select")[4 * nivel - 3].value;   // Primeiro bloco escolhido
         var segundo = document.getElementsByTagName("select")[4 * nivel - 2].value;    // Segundo bloco escolhido
@@ -75,7 +70,7 @@
         var quarto = document.getElementsByTagName("select")[4 * nivel].value;         // Quarto bloco escolhido
 
 
-        // Validação: se o usuário não escolheu a cor, é alertado sobre o fato:
+ 
         if (primeiro == "-") {
           alert("Selecione a cor do primeiro bloco");
           document.getElementsByTagName("select")[4 * nivel - 3].focus();
@@ -97,10 +92,9 @@
           return false;
         }
 
-        // Escreve sequência do usuário:
+        // Escreve sequÃªncia do usuÃ¡rio:
         document.getElementById("status").innerHTML += "<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + primeiro + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + segundo + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + terceiro + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + quarto + "'></button>&nbsp;&nbsp;&nbsp;&nbsp;";
 
-        // Calcula número de erros pela comparação entre os blocos do usuário e do PC:
         if (primeiro != bloco1) {
           erro++;                 
         }
@@ -116,28 +110,18 @@
 
         chances = limite[nivel] - partidas;    // Chances que ainda restam para o fim do jogo
 
-        // Calcular número de erros do jogador por partida:
 
-
-        // CASO 1: Se não errou nenhum bloco em qualquer partida, exceto a primeira:
+        // CASO 1: Se nÃ£o errou nenhum bloco em qualquer partida, exceto a primeira:
         if (erro == 0 && partidas != 1) {
           document.getElementById("status").innerHTML += "<i>ACERTOU em " + partidas + " partidas!</i>";
           HabilitarBotoes(false);
-          alert("Parabéns! Tente novamente!")
+          alert("ParabÃ©ns! Tente novamente!")
         }
 
-        /*
-        *  CASO 2: Se não errou nenhum bloco na primeira 1, então acertou com exatamente uma partida!
-        *  A chance disso ocorrer é muito pequena:
-        *  Nível fácil: 0,39%
-        *  Nível médio: 0,16%
-        *  Nível difícil: 0,078%
-        */
-
         else if (erro == 0 && partidas == 1) {          
-          document.getElementById("status").innerHTML += "<i>ACERTOU em apenas 1 partida!\nIsso é pura sorte!</i>";
+          document.getElementById("status").innerHTML += "<i>ACERTOU em apenas 1 partida!\nIsso Ã© pura sorte!</i>";
           HabilitarBotoes(false);
-          alert("Parabéns! Continue assim!")
+          alert("ParabÃ©ns! Continue assim!")
         }
 
         // CASO 3: Apenas 1 bloco errado. Escrever no singular.
@@ -150,7 +134,7 @@
           document.getElementById("status").innerHTML += erro + " erros. Chances: " + chances + "<br /><br />";
         }
 
-        Rolar();  // Mostrar o último resultado
+        Rolar();  // Mostrar o Ãºltimo resultado
 
         if (partidas == limite[nivel] && erro != 0) {
           // Chances esgotadas, game over!          
@@ -158,13 +142,13 @@
           alert("Suas tentativas se esgotaram. Fim de jogo!");
           return SequenciaCorreta();   // Mostra qual era a resposta correta
         }
-        partidas++;   // Ainda não acertou, assim soma o número de partidas jogadas
+        partidas++;   // Ainda nÃ£o acertou, assim soma o nÃºmero de partidas jogadas
       }
 
       function Desistir() {
         confirma = window.confirm("Tem certeza?");
         if (confirma) {
-          SequenciaCorreta();   // Escreve a combinação secreta, se o usuário confirmar a desistência
+          SequenciaCorreta();  
         }
         else {
           return false;
@@ -172,16 +156,16 @@
       }
 
       function NovaPartida() {
-        HabilitarBotoes(true);                              // Reabilita os botões OK e Desistir
-        partidas = 0;                                       // Zera número de partidas jogadas anteriormente
-        Pensar();                                           // Calcula nova combinação
-        Jogar();                                            // Inicia nova partida
-        document.getElementById("status").innerHTML = "";   // Apaga o campo com o jogo anterior
+        HabilitarBotoes(true);                              
+        partidas = 0;                                       
+        Pensar();                                          
+        Jogar();                                            
+        document.getElementById("status").innerHTML = "";   
       }
 
       function ConfirmarNovaPartida() {
-        confirma = window.confirm("Começar novo jogo?");    // Veririca se o botão não foi apertado sem querer
-        if (confirma) {                                     // Se confirmar, inicia nova partida
+        confirma = window.confirm("ComeÃ§ar novo jogo?");   
+        if (confirma) {                                    
           NovaPartida(); 
         }
         else {
@@ -189,17 +173,17 @@
         }      
       }
 
-      function SequenciaCorreta() {      // Escreve a resposta certa em caso de desistência ou game over
-        document.getElementById("status").innerHTML += "<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + bloco1 + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + bloco2 + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + bloco3 + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + bloco4 + "'></button>&nbsp;&nbsp;&nbsp;&nbsp;<i>Esta era a sequência correta</i>";        
-        HabilitarBotoes(false);        // Desabilita os botões OK e Desistir, pois o jogo acabou
+      function SequenciaCorreta() {      
+        document.getElementById("status").innerHTML += "<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + bloco1 + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + bloco2 + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + bloco3 + "'></button>&nbsp;&nbsp;<button disabled='disabled' style='border: outset 4px #ABABAB; width: 20px; height: 20px; background-color: " + bloco4 + "'></button>&nbsp;&nbsp;&nbsp;&nbsp;<i>Esta era a sequÃªncia correta</i>";        
+        HabilitarBotoes(false);       
         Rolar();
       }
 
       function MudarNivel() {
-        nivel = document.jogo.nivel.value;              // Atualiza nível
+        nivel = document.jogo.nivel.value;   // Atualiza nÃ­vel
 
         if (nivel == 1) {
-          document.getElementById("facil").style.display = "inline";    // Atualiza campos <select>, com as novas cores
+          document.getElementById("facil").style.display = "inline";    
           document.getElementById("medio").style.display = "none";
           document.getElementById("dificil").style.display = "none";
         }
@@ -214,24 +198,24 @@
           document.getElementById("dificil").style.display = "inline";
         }
 
-        n = new Array();   // Níveis de dificuldade disponíveis
-        n[1] = "fácil";
-        n[2] = "médio";
-        n[3] = "difícil";
+        n = new Array();   // NÃ­veis de dificuldade disponÃ­veis
+        n[1] = "fÃ¡cil";
+        n[2] = "mÃ©dio";
+        n[3] = "difÃ­cil";
 
-        alert("O nível foi alterado para " + n[nivel]);
-        NovaPartida();     // Como o nível foi alterado, inicia nova partida
-        partidas = 1;      // Evita bug ao mudar de nível, quanto ao número de chances/partidas
+        alert("O nÃ­vel foi alterado para " + n[nivel]);
+        NovaPartida();    
+        partidas = 1;      
       }
 
       function HabilitarBotoes(r) {
         if (r) {
-          document.jogo.ok.disabled = false;              // Reabilita botão OK, pois o jogo já acabou
-          document.jogo.desistir.disabled = false;        // Reabilita botão Desistir, pois o jogo já acabou 
+          document.jogo.ok.disabled = false;  // Reabilita botÃ£o OK, pois o jogo jÃ¡ acabou
+          document.jogo.desistir.disabled = false;      
         }
         else {
-          document.jogo.ok.disabled = "disabled";         // Desabilita botão OK, pois o jogo já acabou
-          document.jogo.desistir.disabled = "disabled";   // Desabilita botão Desistir, pois o jogo já acabou
+          document.jogo.ok.disabled = "disabled";         
+          document.jogo.desistir.disabled = "disabled";  
         }
       }
 
@@ -243,18 +227,18 @@
     </script>
   </head>
 
-  <body onload="document.getElementsByTagName('select')[0].value = '1'"> <!-- O valor do atributo onload evita bug ao recarregar a página no meio da execução do jogo -->
-    <span class="titulo">PopColor+ v1.0 - Jogo de lógica</span><br /><br />
+  <body onload="document.getElementsByTagName('select')[0].value = '1'"> <!-- O valor do atributo onload evita bug ao recarregar a pÃ¡gina no meio da execuÃ§Ã£o do jogo -->
+    <span class="titulo">PopColor+ v1.0 - Jogo de lÃ³gica</span><br /><br />
 
     <form name="jogo" action="#">
-      <span class="vermelho">Nível de dificuldade:</span>
+      <span class="vermelho">NÃ­vel de dificuldade:</span>
       <select name="nivel" onchange="MudarNivel()">
-        <option value="1">Fácil</option>
-        <option value="2">Médio</option>
-        <option value="3">Difícil</option>
+        <option value="1">FÃ¡cil</option>
+        <option value="2">MÃ©dio</option>
+        <option value="3">DifÃ­cil</option>
       </select><br /><br />
 
-      <span id="facil">  <!-- Bloco de opções do nível Fácil -->
+      <span id="facil">  <!-- Bloco de opÃ§Ãµes do nÃ­vel FÃ¡cil -->
         <select name="primeiro">
           <option value="-">--
           <option value="#FF0000" class="vermelho">Vermelho</option>
@@ -288,7 +272,7 @@
         </select>
       </span>
 
-      <span id="medio" style="display: none">  <!-- Bloco de opções do nível Médio -->
+      <span id="medio" style="display: none">  
         <select name="primeiro">
           <option value="-">--
           <option value="#FF0000" class="vermelho">Vermelho</option>
@@ -326,7 +310,7 @@
         </select>
       </span>
 
-      <span id="dificil" style="display: none">  <!-- Bloco de opções do nível Difícil -->
+      <span id="dificil" style="display: none">  <!-- Bloco de opÃ§Ãµes do nÃ­vel DifÃ­cil -->
         <select name="primeiro">
           <option value="-">--
           <option value="#FF0000" class="vermelho">Vermelho</option>
@@ -376,7 +360,7 @@
 
       <div style="width: 400px; height: 18px; background-color: #DFDFDF; border: solid 2px #122561; color: #225651; padding: 0px 5px 0px 5px">  <!-- Barra de mensagens -->
         <marquee scrollamount="3">
-          O objetivo deste jogo é encontrar a combinação secreta de cores. No nível fácil, escolha uma entre quatro cores para cada bloco, sendo que você tem dez chances para acertar. No nível médio, são cinco cores disponíveis e doze chances. Já no nível difícil, são seis cores e quatorze chances. Lembrando que uma mesma cor pode estar presente em mais de um bloco. A quantidade de erros por jogada é mostrada ao lado dos blocos. Boa sorte!
+          O objetivo deste jogo Ã© encontrar a combinaÃ§Ã£o secreta de cores. No nÃ­vel fÃ¡cil, escolha uma entre quatro cores para cada bloco, sendo que vocÃª tem dez chances para acertar. No nÃ­vel mÃ©dio, sÃ£o cinco cores disponÃ­veis e doze chances. JÃ¡ no nÃ­vel difÃ­cil, sÃ£o seis cores e quatorze chances. Lembrando que uma mesma cor pode estar presente em mais de um bloco. A quantidade de erros por jogada Ã© mostrada ao lado dos blocos. Boa sorte!
         </marquee>
       </div>
     </form>

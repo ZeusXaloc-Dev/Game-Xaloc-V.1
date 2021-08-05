@@ -228,7 +228,7 @@
   </head>
 
   <body onload="document.getElementsByTagName('select')[0].value = '1'"> <!-- O valor do atributo onload evita bug ao recarregar a página no meio da execução do jogo -->
-    <span class="titulo">PopColor+ v1.0 - Jogo de lógica</span><br /><br />
+    <span class="titulo">GameXaloc v1.0 - Jogo de lógica</span><br /><br />
 
     <form name="jogo" action="#">
       <span class="vermelho">Nível de dificuldade:</span>
